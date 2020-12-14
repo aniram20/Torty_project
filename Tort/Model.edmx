@@ -1,0 +1,848 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TortyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ingridients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Articul" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="EdinicyIzmerenia" Type="nvarchar" MaxLength="10" />
+          <Property Name="Kolichestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stoimost" Type="nchar" MaxLength="10" />
+          <Property Name="Gost" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fasovka" Type="nvarchar" MaxLength="50" />
+          <Property Name="Charakteristika" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostavshikName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Izdelie">
+          <Key>
+            <PropertyRef Name="Naimenovanie" />
+          </Key>
+          <Property Name="Naimenovanie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Razmery" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Oborudovanie">
+          <Key>
+            <PropertyRef Name="Markirovka" />
+          </Key>
+          <Property Name="Markirovka" Type="int" Nullable="false" />
+          <Property Name="Type_oborudovania" Type="nvarchar" MaxLength="50" />
+          <Property Name="Charakteristika" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Postavshik">
+          <Key>
+            <PropertyRef Name="Naimenovanie" />
+          </Key>
+          <Property Name="Naimenovanie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="SrokDostavki" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaIngridient">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="Ingridient" />
+          </Key>
+          <Property Name="Izdelie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ingridient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaOperacii">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="Operacia" />
+            <PropertyRef Name="Nomer" />
+          </Key>
+          <Property Name="Izdelie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Operacia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nomer" Type="int" Nullable="false" />
+          <Property Name="TypeOborudovania" Type="nvarchar" MaxLength="50" />
+          <Property Name="VremyaOperacii" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaPolufabrikat">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="Polufabrikat" />
+          </Key>
+          <Property Name="Izdelie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Polufabrikat" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaTort">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="UkrashenieTorta" />
+          </Key>
+          <Property Name="Izdelie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UkrashenieTorta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type_oborudovania">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UkrasheniaTort">
+          <Key>
+            <PropertyRef Name="Articul" />
+          </Key>
+          <Property Name="Articul" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="EdinicyIzmerenia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kolichestvo" Type="float" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stoimost" Type="nchar" MaxLength="10" />
+          <Property Name="Ves" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostavshikName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Familia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zakazy">
+          <Key>
+            <PropertyRef Name="Nomer" />
+            <PropertyRef Name="Data" />
+          </Key>
+          <Property Name="Nomer" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="NaimenovanieZakaz" Type="nvarchar" MaxLength="50" />
+          <Property Name="Izdelie" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zakazchik" Type="nvarchar" MaxLength="50" />
+          <Property Name="Manager" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stoimost" Type="money" />
+          <Property Name="DataZavershenia" Type="date" />
+        </EntityType>
+        <Association Name="FK__Specifika__Ingri__4F7CD00D">
+          <End Role="Ingridients" Type="Self.Ingridients" Multiplicity="1" />
+          <End Role="SpecifikaciaIngridient" Type="Self.SpecifikaciaIngridient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingridients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpecifikaciaIngridient">
+              <PropertyRef Name="Ingridient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__4AB81AF0">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaTort" Type="Self.SpecifikaciaTort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaTort">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__4E88ABD4">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaIngridient" Type="Self.SpecifikaciaIngridient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaIngridient">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__52593CB8">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaOperacii" Type="Self.SpecifikaciaOperacii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaOperacii">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__5629CD9C">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaPolufabrikat" Type="Self.SpecifikaciaPolufabrikat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaPolufabrikat">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Ukras__4BAC3F29">
+          <End Role="UkrasheniaTort" Type="Self.UkrasheniaTort" Multiplicity="1" />
+          <End Role="SpecifikaciaTort" Type="Self.SpecifikaciaTort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UkrasheniaTort">
+              <PropertyRef Name="Articul" />
+            </Principal>
+            <Dependent Role="SpecifikaciaTort">
+              <PropertyRef Name="UkrashenieTorta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingridients_Postavshik">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+          <End Role="Ingridients" Type="Self.Ingridients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="Ingridients">
+              <PropertyRef Name="PostavshikName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oborudovanie_Type_oborudovania">
+          <End Role="Type_oborudovania" Type="Self.Type_oborudovania" Multiplicity="0..1" />
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_oborudovania">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Oborudovanie">
+              <PropertyRef Name="Type_oborudovania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecifikaciaOperacii_Type_oborudovania">
+          <End Role="Type_oborudovania" Type="Self.Type_oborudovania" Multiplicity="0..1" />
+          <End Role="SpecifikaciaOperacii" Type="Self.SpecifikaciaOperacii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_oborudovania">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpecifikaciaOperacii">
+              <PropertyRef Name="TypeOborudovania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UkrasheniaTort_Postavshik">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+          <End Role="UkrasheniaTort" Type="Self.UkrasheniaTort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="UkrasheniaTort">
+              <PropertyRef Name="PostavshikName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakazy_Izdelie">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="0..1" />
+          <End Role="Zakazy" Type="Self.Zakazy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="Zakazy">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TortyModelContainer">
+          <EntitySet Name="Ingridients" EntityType="Self.Ingridients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Izdelie" EntityType="Self.Izdelie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oborudovanie" EntityType="Self.Oborudovanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postavshik" EntityType="Self.Postavshik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecifikaciaIngridient" EntityType="Self.SpecifikaciaIngridient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecifikaciaOperacii" EntityType="Self.SpecifikaciaOperacii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecifikaciaPolufabrikat" EntityType="Self.SpecifikaciaPolufabrikat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecifikaciaTort" EntityType="Self.SpecifikaciaTort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_oborudovania" EntityType="Self.Type_oborudovania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UkrasheniaTort" EntityType="Self.UkrasheniaTort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakazy" EntityType="Self.Zakazy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Specifika__Ingri__4F7CD00D" Association="Self.FK__Specifika__Ingri__4F7CD00D">
+            <End Role="Ingridients" EntitySet="Ingridients" />
+            <End Role="SpecifikaciaIngridient" EntitySet="SpecifikaciaIngridient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__4AB81AF0" Association="Self.FK__Specifika__Izdel__4AB81AF0">
+            <End Role="Izdelie" EntitySet="Izdelie" />
+            <End Role="SpecifikaciaTort" EntitySet="SpecifikaciaTort" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__4E88ABD4" Association="Self.FK__Specifika__Izdel__4E88ABD4">
+            <End Role="Izdelie" EntitySet="Izdelie" />
+            <End Role="SpecifikaciaIngridient" EntitySet="SpecifikaciaIngridient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__52593CB8" Association="Self.FK__Specifika__Izdel__52593CB8">
+            <End Role="Izdelie" EntitySet="Izdelie" />
+            <End Role="SpecifikaciaOperacii" EntitySet="SpecifikaciaOperacii" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__5629CD9C" Association="Self.FK__Specifika__Izdel__5629CD9C">
+            <End Role="Izdelie" EntitySet="Izdelie" />
+            <End Role="SpecifikaciaPolufabrikat" EntitySet="SpecifikaciaPolufabrikat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Ukras__4BAC3F29" Association="Self.FK__Specifika__Ukras__4BAC3F29">
+            <End Role="UkrasheniaTort" EntitySet="UkrasheniaTort" />
+            <End Role="SpecifikaciaTort" EntitySet="SpecifikaciaTort" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingridients_Postavshik" Association="Self.FK_Ingridients_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Ingridients" EntitySet="Ingridients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oborudovanie_Type_oborudovania" Association="Self.FK_Oborudovanie_Type_oborudovania">
+            <End Role="Type_oborudovania" EntitySet="Type_oborudovania" />
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecifikaciaOperacii_Type_oborudovania" Association="Self.FK_SpecifikaciaOperacii_Type_oborudovania">
+            <End Role="Type_oborudovania" EntitySet="Type_oborudovania" />
+            <End Role="SpecifikaciaOperacii" EntitySet="SpecifikaciaOperacii" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UkrasheniaTort_Postavshik" Association="Self.FK_UkrasheniaTort_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="UkrasheniaTort" EntitySet="UkrasheniaTort" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakazy_Izdelie" Association="Self.FK_Zakazy_Izdelie">
+            <End Role="Izdelie" EntitySet="Izdelie" />
+            <End Role="Zakazy" EntitySet="Zakazy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TortyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ingridient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Articul" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EdinicyIzmerenia" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Kolichestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Stoimost" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Gost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fasovka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Charakteristika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostavshikName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SpecifikaciaIngridients" Relationship="Self.FK__Specifika__Ingri__4F7CD00D" FromRole="Ingridients" ToRole="SpecifikaciaIngridient" />
+          <NavigationProperty Name="Postavshik" Relationship="Self.FK_Ingridients_Postavshik" FromRole="Ingridients" ToRole="Postavshik" />
+        </EntityType>
+        <EntityType Name="Izdelie">
+          <Key>
+            <PropertyRef Name="Naimenovanie" />
+          </Key>
+          <Property Name="Naimenovanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Razmery" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SpecifikaciaTorts" Relationship="Self.FK__Specifika__Izdel__4AB81AF0" FromRole="Izdelie" ToRole="SpecifikaciaTort" />
+          <NavigationProperty Name="SpecifikaciaIngridients" Relationship="Self.FK__Specifika__Izdel__4E88ABD4" FromRole="Izdelie" ToRole="SpecifikaciaIngridient" />
+          <NavigationProperty Name="SpecifikaciaOperaciis" Relationship="Self.FK__Specifika__Izdel__52593CB8" FromRole="Izdelie" ToRole="SpecifikaciaOperacii" />
+          <NavigationProperty Name="SpecifikaciaPolufabrikats" Relationship="Self.FK__Specifika__Izdel__5629CD9C" FromRole="Izdelie" ToRole="SpecifikaciaPolufabrikat" />
+          <NavigationProperty Name="Zakazies" Relationship="Self.FK_Zakazy_Izdelie" FromRole="Izdelie" ToRole="Zakazy" />
+        </EntityType>
+        <EntityType Name="Oborudovanie">
+          <Key>
+            <PropertyRef Name="Markirovka" />
+          </Key>
+          <Property Name="Markirovka" Type="Int32" Nullable="false" />
+          <Property Name="Type_oborudovania" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Charakteristika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Type_oborudovania1" Relationship="Self.FK_Oborudovanie_Type_oborudovania" FromRole="Oborudovanie" ToRole="Type_oborudovania" />
+        </EntityType>
+        <EntityType Name="Postavshik">
+          <Key>
+            <PropertyRef Name="Naimenovanie" />
+          </Key>
+          <Property Name="Naimenovanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SrokDostavki" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Ingridients" Relationship="Self.FK_Ingridients_Postavshik" FromRole="Postavshik" ToRole="Ingridients" />
+          <NavigationProperty Name="UkrasheniaTorts" Relationship="Self.FK_UkrasheniaTort_Postavshik" FromRole="Postavshik" ToRole="UkrasheniaTort" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaIngridient">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="Ingridient" />
+          </Key>
+          <Property Name="Izdelie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ingridient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kolichestvo" Type="Int32" />
+          <NavigationProperty Name="Ingridient1" Relationship="Self.FK__Specifika__Ingri__4F7CD00D" FromRole="SpecifikaciaIngridient" ToRole="Ingridients" />
+          <NavigationProperty Name="Izdelie1" Relationship="Self.FK__Specifika__Izdel__4E88ABD4" FromRole="SpecifikaciaIngridient" ToRole="Izdelie" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaOperacii">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="Operacia" />
+            <PropertyRef Name="Nomer" />
+          </Key>
+          <Property Name="Izdelie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Operacia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nomer" Type="Int32" Nullable="false" />
+          <Property Name="TypeOborudovania" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VremyaOperacii" Type="Time" Precision="7" />
+          <NavigationProperty Name="Izdelie1" Relationship="Self.FK__Specifika__Izdel__52593CB8" FromRole="SpecifikaciaOperacii" ToRole="Izdelie" />
+          <NavigationProperty Name="Type_oborudovania" Relationship="Self.FK_SpecifikaciaOperacii_Type_oborudovania" FromRole="SpecifikaciaOperacii" ToRole="Type_oborudovania" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaPolufabrikat">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="Polufabrikat" />
+          </Key>
+          <Property Name="Izdelie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Polufabrikat" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kolichestvo" Type="Int32" />
+          <NavigationProperty Name="Izdelie1" Relationship="Self.FK__Specifika__Izdel__5629CD9C" FromRole="SpecifikaciaPolufabrikat" ToRole="Izdelie" />
+        </EntityType>
+        <EntityType Name="SpecifikaciaTort">
+          <Key>
+            <PropertyRef Name="Izdelie" />
+            <PropertyRef Name="UkrashenieTorta" />
+          </Key>
+          <Property Name="Izdelie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UkrashenieTorta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kolichestvo" Type="Int32" />
+          <NavigationProperty Name="Izdelie1" Relationship="Self.FK__Specifika__Izdel__4AB81AF0" FromRole="SpecifikaciaTort" ToRole="Izdelie" />
+          <NavigationProperty Name="UkrasheniaTort" Relationship="Self.FK__Specifika__Ukras__4BAC3F29" FromRole="SpecifikaciaTort" ToRole="UkrasheniaTort" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_oborudovania">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Oborudovanies" Relationship="Self.FK_Oborudovanie_Type_oborudovania" FromRole="Type_oborudovania" ToRole="Oborudovanie" />
+          <NavigationProperty Name="SpecifikaciaOperaciis" Relationship="Self.FK_SpecifikaciaOperacii_Type_oborudovania" FromRole="Type_oborudovania" ToRole="SpecifikaciaOperacii" />
+        </EntityType>
+        <EntityType Name="UkrasheniaTort">
+          <Key>
+            <PropertyRef Name="Articul" />
+          </Key>
+          <Property Name="Articul" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EdinicyIzmerenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kolichestvo" Type="Double" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Stoimost" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Ves" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostavshikName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Postavshik" Relationship="Self.FK_UkrasheniaTort_Postavshik" FromRole="UkrasheniaTort" ToRole="Postavshik" />
+          <NavigationProperty Name="SpecifikaciaTorts" Relationship="Self.FK__Specifika__Ukras__4BAC3F29" FromRole="UkrasheniaTort" ToRole="SpecifikaciaTort" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Zakazy">
+          <Key>
+            <PropertyRef Name="Nomer" />
+            <PropertyRef Name="Data" />
+          </Key>
+          <Property Name="Nomer" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NaimenovanieZakaz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Izdelie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zakazchik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Stoimost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DataZavershenia" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Izdelie1" Relationship="Self.FK_Zakazy_Izdelie" FromRole="Zakazy" ToRole="Izdelie" />
+        </EntityType>
+        <Association Name="FK__Specifika__Ingri__4F7CD00D">
+          <End Role="Ingridients" Type="Self.Ingridient" Multiplicity="1" />
+          <End Role="SpecifikaciaIngridient" Type="Self.SpecifikaciaIngridient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingridients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpecifikaciaIngridient">
+              <PropertyRef Name="Ingridient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingridients_Postavshik">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+          <End Role="Ingridients" Type="Self.Ingridient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="Ingridients">
+              <PropertyRef Name="PostavshikName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__4AB81AF0">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaTort" Type="Self.SpecifikaciaTort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaTort">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__4E88ABD4">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaIngridient" Type="Self.SpecifikaciaIngridient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaIngridient">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__52593CB8">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaOperacii" Type="Self.SpecifikaciaOperacii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaOperacii">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Izdel__5629CD9C">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="1" />
+          <End Role="SpecifikaciaPolufabrikat" Type="Self.SpecifikaciaPolufabrikat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="SpecifikaciaPolufabrikat">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zakazy_Izdelie">
+          <End Role="Izdelie" Type="Self.Izdelie" Multiplicity="0..1" />
+          <End Role="Zakazy" Type="Self.Zakazy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdelie">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="Zakazy">
+              <PropertyRef Name="Izdelie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oborudovanie_Type_oborudovania">
+          <End Role="Type_oborudovania" Type="Self.Type_oborudovania" Multiplicity="0..1" />
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_oborudovania">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Oborudovanie">
+              <PropertyRef Name="Type_oborudovania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UkrasheniaTort_Postavshik">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+          <End Role="UkrasheniaTort" Type="Self.UkrasheniaTort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="Naimenovanie" />
+            </Principal>
+            <Dependent Role="UkrasheniaTort">
+              <PropertyRef Name="PostavshikName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecifikaciaOperacii_Type_oborudovania">
+          <End Role="Type_oborudovania" Type="Self.Type_oborudovania" Multiplicity="0..1" />
+          <End Role="SpecifikaciaOperacii" Type="Self.SpecifikaciaOperacii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_oborudovania">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpecifikaciaOperacii">
+              <PropertyRef Name="TypeOborudovania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifika__Ukras__4BAC3F29">
+          <End Role="UkrasheniaTort" Type="Self.UkrasheniaTort" Multiplicity="1" />
+          <End Role="SpecifikaciaTort" Type="Self.SpecifikaciaTort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UkrasheniaTort">
+              <PropertyRef Name="Articul" />
+            </Principal>
+            <Dependent Role="SpecifikaciaTort">
+              <PropertyRef Name="UkrashenieTorta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TortyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ingridients" EntityType="Self.Ingridient" />
+          <EntitySet Name="Izdelies" EntityType="Self.Izdelie" />
+          <EntitySet Name="Oborudovanies" EntityType="Self.Oborudovanie" />
+          <EntitySet Name="Postavshiks" EntityType="Self.Postavshik" />
+          <EntitySet Name="SpecifikaciaIngridients" EntityType="Self.SpecifikaciaIngridient" />
+          <EntitySet Name="SpecifikaciaOperaciis" EntityType="Self.SpecifikaciaOperacii" />
+          <EntitySet Name="SpecifikaciaPolufabrikats" EntityType="Self.SpecifikaciaPolufabrikat" />
+          <EntitySet Name="SpecifikaciaTorts" EntityType="Self.SpecifikaciaTort" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Type_oborudovania" EntityType="Self.Type_oborudovania" />
+          <EntitySet Name="UkrasheniaTorts" EntityType="Self.UkrasheniaTort" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Zakazies" EntityType="Self.Zakazy" />
+          <AssociationSet Name="FK__Specifika__Ingri__4F7CD00D" Association="Self.FK__Specifika__Ingri__4F7CD00D">
+            <End Role="Ingridients" EntitySet="Ingridients" />
+            <End Role="SpecifikaciaIngridient" EntitySet="SpecifikaciaIngridients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingridients_Postavshik" Association="Self.FK_Ingridients_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshiks" />
+            <End Role="Ingridients" EntitySet="Ingridients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__4AB81AF0" Association="Self.FK__Specifika__Izdel__4AB81AF0">
+            <End Role="Izdelie" EntitySet="Izdelies" />
+            <End Role="SpecifikaciaTort" EntitySet="SpecifikaciaTorts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__4E88ABD4" Association="Self.FK__Specifika__Izdel__4E88ABD4">
+            <End Role="Izdelie" EntitySet="Izdelies" />
+            <End Role="SpecifikaciaIngridient" EntitySet="SpecifikaciaIngridients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__52593CB8" Association="Self.FK__Specifika__Izdel__52593CB8">
+            <End Role="Izdelie" EntitySet="Izdelies" />
+            <End Role="SpecifikaciaOperacii" EntitySet="SpecifikaciaOperaciis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Izdel__5629CD9C" Association="Self.FK__Specifika__Izdel__5629CD9C">
+            <End Role="Izdelie" EntitySet="Izdelies" />
+            <End Role="SpecifikaciaPolufabrikat" EntitySet="SpecifikaciaPolufabrikats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zakazy_Izdelie" Association="Self.FK_Zakazy_Izdelie">
+            <End Role="Izdelie" EntitySet="Izdelies" />
+            <End Role="Zakazy" EntitySet="Zakazies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oborudovanie_Type_oborudovania" Association="Self.FK_Oborudovanie_Type_oborudovania">
+            <End Role="Type_oborudovania" EntitySet="Type_oborudovania" />
+            <End Role="Oborudovanie" EntitySet="Oborudovanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UkrasheniaTort_Postavshik" Association="Self.FK_UkrasheniaTort_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshiks" />
+            <End Role="UkrasheniaTort" EntitySet="UkrasheniaTorts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecifikaciaOperacii_Type_oborudovania" Association="Self.FK_SpecifikaciaOperacii_Type_oborudovania">
+            <End Role="Type_oborudovania" EntitySet="Type_oborudovania" />
+            <End Role="SpecifikaciaOperacii" EntitySet="SpecifikaciaOperaciis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifika__Ukras__4BAC3F29" Association="Self.FK__Specifika__Ukras__4BAC3F29">
+            <End Role="UkrasheniaTort" EntitySet="UkrasheniaTorts" />
+            <End Role="SpecifikaciaTort" EntitySet="SpecifikaciaTorts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TortyModelContainer" CdmEntityContainer="TortyEntities">
+          <EntitySetMapping Name="Ingridients">
+            <EntityTypeMapping TypeName="TortyModel.Ingridient">
+              <MappingFragment StoreEntitySet="Ingridients">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Articul" ColumnName="Articul" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EdinicyIzmerenia" ColumnName="EdinicyIzmerenia" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Stoimost" ColumnName="Stoimost" />
+                <ScalarProperty Name="Gost" ColumnName="Gost" />
+                <ScalarProperty Name="Fasovka" ColumnName="Fasovka" />
+                <ScalarProperty Name="Charakteristika" ColumnName="Charakteristika" />
+                <ScalarProperty Name="PostavshikName" ColumnName="PostavshikName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Izdelies">
+            <EntityTypeMapping TypeName="TortyModel.Izdelie">
+              <MappingFragment StoreEntitySet="Izdelie">
+                <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+                <ScalarProperty Name="Razmery" ColumnName="Razmery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oborudovanies">
+            <EntityTypeMapping TypeName="TortyModel.Oborudovanie">
+              <MappingFragment StoreEntitySet="Oborudovanie">
+                <ScalarProperty Name="Markirovka" ColumnName="Markirovka" />
+                <ScalarProperty Name="Type_oborudovania" ColumnName="Type_oborudovania" />
+                <ScalarProperty Name="Charakteristika" ColumnName="Charakteristika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postavshiks">
+            <EntityTypeMapping TypeName="TortyModel.Postavshik">
+              <MappingFragment StoreEntitySet="Postavshik">
+                <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SrokDostavki" ColumnName="SrokDostavki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecifikaciaIngridients">
+            <EntityTypeMapping TypeName="TortyModel.SpecifikaciaIngridient">
+              <MappingFragment StoreEntitySet="SpecifikaciaIngridient">
+                <ScalarProperty Name="Izdelie" ColumnName="Izdelie" />
+                <ScalarProperty Name="Ingridient" ColumnName="Ingridient" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecifikaciaOperaciis">
+            <EntityTypeMapping TypeName="TortyModel.SpecifikaciaOperacii">
+              <MappingFragment StoreEntitySet="SpecifikaciaOperacii">
+                <ScalarProperty Name="Izdelie" ColumnName="Izdelie" />
+                <ScalarProperty Name="Operacia" ColumnName="Operacia" />
+                <ScalarProperty Name="Nomer" ColumnName="Nomer" />
+                <ScalarProperty Name="TypeOborudovania" ColumnName="TypeOborudovania" />
+                <ScalarProperty Name="VremyaOperacii" ColumnName="VremyaOperacii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecifikaciaPolufabrikats">
+            <EntityTypeMapping TypeName="TortyModel.SpecifikaciaPolufabrikat">
+              <MappingFragment StoreEntitySet="SpecifikaciaPolufabrikat">
+                <ScalarProperty Name="Izdelie" ColumnName="Izdelie" />
+                <ScalarProperty Name="Polufabrikat" ColumnName="Polufabrikat" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecifikaciaTorts">
+            <EntityTypeMapping TypeName="TortyModel.SpecifikaciaTort">
+              <MappingFragment StoreEntitySet="SpecifikaciaTort">
+                <ScalarProperty Name="Izdelie" ColumnName="Izdelie" />
+                <ScalarProperty Name="UkrashenieTorta" ColumnName="UkrashenieTorta" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TortyModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_oborudovania">
+            <EntityTypeMapping TypeName="TortyModel.Type_oborudovania">
+              <MappingFragment StoreEntitySet="Type_oborudovania">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UkrasheniaTorts">
+            <EntityTypeMapping TypeName="TortyModel.UkrasheniaTort">
+              <MappingFragment StoreEntitySet="UkrasheniaTort">
+                <ScalarProperty Name="Articul" ColumnName="Articul" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EdinicyIzmerenia" ColumnName="EdinicyIzmerenia" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Stoimost" ColumnName="Stoimost" />
+                <ScalarProperty Name="Ves" ColumnName="Ves" />
+                <ScalarProperty Name="PostavshikName" ColumnName="PostavshikName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TortyModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakazies">
+            <EntityTypeMapping TypeName="TortyModel.Zakazy">
+              <MappingFragment StoreEntitySet="Zakazy">
+                <ScalarProperty Name="Nomer" ColumnName="Nomer" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="NaimenovanieZakaz" ColumnName="NaimenovanieZakaz" />
+                <ScalarProperty Name="Izdelie" ColumnName="Izdelie" />
+                <ScalarProperty Name="Zakazchik" ColumnName="Zakazchik" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="Stoimost" ColumnName="Stoimost" />
+                <ScalarProperty Name="DataZavershenia" ColumnName="DataZavershenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

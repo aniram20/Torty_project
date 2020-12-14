@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="321cfe9126174313be199cdc28d382ca" Name="Diagram1">
+        <EntityTypeShape EntityType="TortyModel.Ingridient" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.Izdelie" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.Oborudovanie" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.Postavshik" Width="1.5" PointX="1.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.SpecifikaciaIngridient" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.SpecifikaciaOperacii" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.SpecifikaciaPolufabrikat" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.SpecifikaciaTort" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.sysdiagram" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.Type_oborudovania" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.UkrasheniaTort" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.User" Width="1.5" PointX="5.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TortyModel.Zakazy" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="TortyModel.FK__Specifika__Ingri__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK_Ingridients_Postavshik" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK__Specifika__Izdel__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK__Specifika__Izdel__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK__Specifika__Izdel__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK__Specifika__Izdel__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK_Zakazy_Izdelie" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK_Oborudovanie_Type_oborudovania" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK_UkrasheniaTort_Postavshik" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK_SpecifikaciaOperacii_Type_oborudovania" ManuallyRouted="false" />
+        <AssociationConnector Association="TortyModel.FK__Specifika__Ukras__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
