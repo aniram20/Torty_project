@@ -29,15 +29,15 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <DockPanel Margin="0 0 0 10">
                 <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="18" Margin="0 0 10 0">Логин:</TextBlock>
-                <TextBox HorizontalAlignment="Right" FontFamily="Comic Sans MS" FontSize="18" Width="350"></TextBox>
+                <TextBox x:Name="tbLogin" HorizontalAlignment="Right" FontFamily="Comic Sans MS" FontSize="18" Width="350"></TextBox>
             </DockPanel>
             <DockPanel Margin="0 0 0 20">
                 <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="18" Margin="0 0 10 0">Пароль:</TextBlock>
-                <PasswordBox PasswordChar="*" HorizontalAlignment="Right" FontFamily="Comic Sans MS" FontSize="18" Width="350"></PasswordBox>
+                <PasswordBox PasswordChar="*" x:Name="pbPassword" HorizontalAlignment="Right" FontFamily="Comic Sans MS" FontSize="18" Width="350"></PasswordBox>
             </DockPanel>
             <DockPanel>
                 <Button HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="18" Width="190"
-                        Background="#FFE9E6B1">Войти</Button>
+                        Background="#FFE9E6B1" Click="Avtorizacia_Click">Войти</Button>
                 <Button HorizontalAlignment="Right" FontFamily="Comic Sans MS" FontSize="18" Width="190"
                         Background="#FFE9E6B1" Click="Registraciya">Зарегистрироваться</Button>
             </DockPanel>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace Tort
 {
@@ -30,6 +31,22 @@ namespace Tort
             NavigationService navigate;
             navigate = NavigationService.GetNavigationService(this);
             navigate.Navigate(new System.Uri("Registraciya.xaml", UriKind.RelativeOrAbsolute)); //Переход к странице регистрации
+        }
+
+        private void Avtorizacia_Click(object sender, RoutedEventArgs e)
+        {
+            TortyEntities torty = new TortyEntities();
+            User user = torty.Users.Find(tbLogin, pbPassword);
+            if (user != null)
+            {
+                NavigationService navigate;
+                navigate = NavigationService.GetNavigationService(this);
+                navigate.Navigate(new System.Uri("Ukrasheniya.xaml", UriKind.RelativeOrAbsolute));
+            }
+            else
+            {
+                MessageBox.Show("Неправильно введён логин или пароль");
+            }
         }
     }
 }
